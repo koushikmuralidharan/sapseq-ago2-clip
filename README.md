@@ -18,7 +18,8 @@ Download make_config.html and open.
 1. Enter your data in the `NAME, INPUT_PATH, CLASS_TIM` format in the first text area.
 2. Example input:
 
-input1,/path/to/input1.fastq.gz,I input2,/path/to/input2.fastq.gz,I
+input1,/path/to/input1.fastq.gz,I
+input2,/path/to/input2.fastq.gz,I
 
 3. Click **Generate CSV** to download `config.csv`.
 
@@ -26,7 +27,8 @@ input1,/path/to/input1.fastq.gz,I input2,/path/to/input2.fastq.gz,I
 1. Enter your data in the `NAME, INPUT_PATH, 5ADAPTER, UMI, UMI_LOC, 3ADAPTER, CLASS_TIM` format in the second text area.
 2. Example input:
 
-sample1,/path/to/sample1.fastq.gz,AGCTG,5,10,GCTAG,T sample2,/path/to/sample2.fastq.gz,AGCTG,5,10,GCTAG,T
+sample1,/path/to/sample1.fastq.gz,AGCTG,5,NNNNXXXCCCNNNNNN,GCTAG,T
+sample2,/path/to/sample2.fastq.gz,AGCTG,5,NNNNXXXCCCNNNNNN,GCTAG,T
 
 3. Click **Generate CSV** to download `config.csv`.
 
