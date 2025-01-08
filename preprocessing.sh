@@ -1,8 +1,8 @@
 #!/bin/sh
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
+#SBATCH --nodes=4
+#SBATCH --ntasks=4
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=64gb
+#SBATCH --mem=100gb
 #SBATCH --time=24:00:00
 #SBATCH --partition=highmem
 
@@ -55,7 +55,7 @@ if [ "$SAPSEQ_MODE" = true ]; then
     # Read simplified config file
     while IFS="," read -r NAME INPUT_PATH CLASS_TIM; do
         # Skip the header row
-        if [ "$NAME" = "NAME" ]; then
+        if [ "$NAME" = "NAME" ] || [ -z "$NAME" ] ; then
             continue
         fi
 
@@ -201,7 +201,12 @@ else
 fi
 
 # Step 5: Generate MultiQC reports
+
+module purge
+module load python/3.8.3
+
 pip install multiqc
+
 echo "Generating combined MultiQC report for all samples"
 multiqc "$OUTPUT_DIR/fastqc_results" "$OUTPUT_DIR/Step_01_Results/processed_fastqc" -o "$OUTPUT_DIR/multiqc_results"
 
