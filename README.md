@@ -1,4 +1,4 @@
-# CSV Input Generator
+# Welcome to SAPseq (unenthusiastic)
 
 This tool helps you create a configuration CSV file for the SAPseq analysis pipeline. You can access the generator directly from your GitHub repository's website.
 
