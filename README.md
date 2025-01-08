@@ -15,7 +15,7 @@ Download make_config.html and open.
 ### Generate a CSV
 
 #### 1. For `--sapseq`
-1. Enter your data in the `NAME, INPUT_PATH, CLASS_TIM` format in the first text area.
+1. Enter your data in the `NAME, INPUT_PATH, CLASS_TIM` format in the first text area. T = target, I = input, M = miRNA
 2. Example input:
 
 input1,/path/to/input1.fastq.gz,I
