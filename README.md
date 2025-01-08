@@ -1,6 +1,9 @@
 # Welcome to SAPseq (unenthusiastic)
 
-This tool helps you create a configuration CSV file for the SAPseq analysis pipeline. You can access the generator directly from your GitHub repository's website.
+Do you not like coding and like .csv files?
+Do you enjoy copying and pasting?
+This pipeline is for you?
+With minimal effort, you too can process SAPseq data!
 
 ## Features
 
