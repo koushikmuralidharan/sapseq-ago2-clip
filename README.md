@@ -19,6 +19,7 @@ Download make_config.html and open.
 2. Example input:
 
 input1,/path/to/input1.fastq.gz,I
+
 input2,/path/to/input2.fastq.gz,I
 
 3. Click **Generate CSV** to download `config.csv`.
