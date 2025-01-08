@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSV Input Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #121212;
+            color: #FFFFFF;
+        }
+        .container {
+            margin-bottom: 20px;
+            background-color: #1E1E1E;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        label {
+            font-weight: bold;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            background-color: #2D2D2D;
+            color: #FFFFFF;
+            border: 1px solid #444444;
+            border-radius: 4px;
+            padding: 5px;
+        }
+        button {
+            margin-top: 10px;
+            background-color: #6200EE;
+            color: #FFFFFF;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #3700B3;
+        }
+        pre {
+            background-color: #2D2D2D;
+            color: #FFFFFF;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSV Input Generator</h1>
+
+    <p>Welcome to the SAPseq analysis pipeline. For in-house pulldown data (single-end reads with the Small RNA Custom Adapters from Scripps Genomics Core), include <code>--sapseq</code> while calling the command. For custom pipeline encoding, please use the following input format as needed.</p>
+
+    <pre>input1,/gpfs/home/kmuralidharan/sapseq/unsorted_hepatocytes/input/NS_KM1_input.fastq.gz,I
+input2,/gpfs/home/kmuralidharan/sapseq/unsorted_hepatocytes/input/NS_KM2_input.fastq.gz,I
+target1,/gpfs/home/kmuralidharan/sapseq/unsorted_hepatocytes/input/NS_KM1_target.fastq.gz,T
+target2,/gpfs/home/kmuralidharan/sapseq/unsorted_hepatocytes/input/NS_KM2_target.fastq.gz,T
+miRNA1,/gpfs/home/kmuralidharan/sapseq/unsorted_hepatocytes/input/NS_KM1_miRNA.fastq.gz,M
+miRNA2,/gpfs/home/kmuralidharan/sapseq/unsorted_hepatocytes/input/NS_KM2_miRNA.fastq.gz,M</pre>
+
+    <div class="container">
+        <h2>For --sapseq</h2>
+        <label>Enter rows (comma-separated: NAME, INPUT_PATH, CLASS_TIM):</label><br>
+        <textarea id="sapseqInput"></textarea><br>
+        <button onclick="generateCSV('sapseqInput', ['NAME', 'INPUT_PATH', 'CLASS_TIM'], 'config.csv')">Generate CSV</button>
+    </div>
+
+    <div class="container">
+        <h2>Without --sapseq</h2>
+        <label>Enter rows (comma-separated: NAME, INPUT_PATH, 5ADAPTER, UMI, UMI_LOC, 3ADAPTER, CLASS_TIM):</label><br>
+        <textarea id="fullInput"></textarea><br>
+        <button onclick="generateCSV('fullInput', ['NAME', 'INPUT_PATH', '5ADAPTER', 'UMI', 'UMI_LOC', '3ADAPTER', 'CLASS_TIM'], 'config.csv')">Generate CSV</button>
+    </div>
+
+    <p>Save and upload the <code>config.csv</code> file to the HPC cluster, or edit it as needed prior to upload. To execute the preprocessing step, use the following command:</p>
+
+    <pre>sbatch preprocessing.sh --config config.csv --o ./output_directory --sapseq</pre>
+
+    <p>Check outputs and QC reports before proceeding to the next step.</p>
+
+    <script>
+        function generateCSV(inputId, headers, filename) {
+            const input = document.getElementById(inputId).value;
+            const rows = input.trim().split('\n');
+
+            if (rows.length === 0 || rows[0].trim() === "") {
+                alert("Please enter some data.");
+                return;
+            }
+
+            const csvContent = [headers.join(",")].concat(rows).join("\n");
+
+            // Create a Blob object for the CSV content
+            const blob = new Blob([csvContent], { type: "text/csv" });
+
+            // Save the file in the same directory as the HTML file
+            const anchor = document.createElement("a");
+            anchor.href = URL.createObjectURL(blob);
+            anchor.download = filename;
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+        }
+    </script>
+</body>
+</html>
