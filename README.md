@@ -34,8 +34,10 @@ sample2,/path/to/sample2.fastq.gz,AGCTG,5,NNNNXXXCCCNNNNNN,GCTAG,T
 ### Upload the CSV to Your HPC Cluster
 1. Save the `config.csv` file.
 2. Upload the file to your HPC cluster.
-3. Run the preprocessing step using the following command:
+3. Run the preprocessing step using the following commands:
 ```bash
+sed -i 's/\([^,]*,[^,]*,[^,]*\).*/\1/' config.csv
+echo "" >> config.csv
 sbatch preprocessing.sh --config config.csv --o ./output_directory --sapseq
 
 
