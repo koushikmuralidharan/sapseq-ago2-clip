@@ -10,7 +10,7 @@ This tool helps you create a configuration CSV file for the SAPseq analysis pipe
 ## How to Use
 
 ### Access the Tool
-Visit the generator directly at: [CSV Input Generator](https://koushikmuralidharan.github.io/sapseq-ago2-clip/).
+Download make_config.html and open.
 
 ### Generate a CSV
 
