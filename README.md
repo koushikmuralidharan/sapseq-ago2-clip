@@ -1,8 +1,8 @@
 # Welcome to SAPseq (unenthusiastic)
 
-Do you not like coding and like .csv files?
+Do you not like coding? do you like .csv files?
 Do you enjoy copying and pasting?
-This pipeline is for you?
+This pipeline is for you!
 With minimal effort, you too can process SAPseq data!
 
 ## Features
